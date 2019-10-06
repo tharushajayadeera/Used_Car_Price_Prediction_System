@@ -3,6 +3,12 @@ from django.http import HttpResponse
 
 # Create your views here.
 
+
+def home(request):
+
+    return render(request, 'home.html', {'home':''})
+
+
 def result(request):
 
     model_year = request.GET['model_year']
@@ -12,73 +18,55 @@ def result(request):
     engine_capacity = request.GET['engine_capacity']
     mileage = request.GET['mileage']
 
-    return render(request, 'result.html',{'result': model_year})
+    hatchback=0
+    saloon=0
+    stationwagon=0
+    petrol=0
+    petrolandother=0
+    dieselandother=0
 
+    if transmission=="manual": transmission=1 
+    if transmission=="automatic": transmission=0
 
+    if body_type=="hatchback": Hatchback=1 
+    if body_type=="saloon": Saloon=1 
+    if body_type=="stationwagon": stationwagon=1
 
-def MLR(request):
+    if fuel_type=="petrol": petrol=1
+    if fuel_type=="diesel": petrol=0
+    if fuel_type=="petrolandother": petrolandother=1
+    if fuel_type=="dieselandother": dieselandother=1
 
     import pandas as pd  
-    import numpy as np  
+    import numpy as np    
     from sklearn.model_selection import train_test_split 
-
-    cars = pd.read_csv('Online_Dataset.csv')
-
-    X = cars.iloc[:,3:] 
-    y = cars.iloc[:,2]
-
-    #Convert the column into categorical columns
-
-    states=pd.get_dummies(X['Fuel_Type'],drop_first=True)
-
-    # Drop the state coulmn
-    X=X.drop('Fuel_Type',axis=1)
-
-    # concat the dummy variables
-    X=pd.concat([X,states],axis=1)
-
-    #Convert the column into categorical columns
-    states=pd.get_dummies(X['Color'],drop_first=True)
-
-    # Drop the state coulmn
-    X=X.drop('Color',axis=1)
-
-    # concat the dummy variables
-    X=pd.concat([X,states],axis=1)
-
-    X=X.drop(['Cylinders',
-            'Age_08_04',
-            'Parking_Assistant',
-            'Power_Steering',
-            'Airbag_1',
-            'Airbag_2',
-            'Mfg_Month',
-            'Met_Color',
-            'BOVAG_Guarantee',
-            'Mfr_Guarantee',
-            'Backseat_Divider',
-            'Automatic',
-            'HP',
-            'Boardcomputer',
-            'ABS',
-            'Powered_Windows',
-            'Mistlamps',
-            'Tow_Bar',
-            'Sport_Model'
-            ], axis=1)
-            
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-
     from sklearn.linear_model import LinearRegression
-
-    regressor = LinearRegression() 
-
+    
+    cars = pd.read_csv('Sri_Lankan_Dataset_Bit_Map_Indexed.csv')
+    
+    X = cars.iloc[:,1:] 
+    y = cars.iloc[:,0]
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+    
+    regressor = LinearRegression()  
     regressor.fit(X_train, y_train) #training the algorithm
+    
+    X_test = pd.DataFrame({
+           'Model year':[model_year],
+           'Engine capacity':[engine_capacity],
+           'Mileage':[mileage],
+           'Manual':[transmission],
+           'Hatchback':[hatchback],
+           'Saloon':[saloon],
+           'Station wagon':[stationwagon],
+           'Diesel, Other fuel type':[dieselandother],
+           'Petrol':[petrol],
+           'Petrol, Other fuel type':[petrolandother]})
 
-    y_pred = regressor.predict(X_test)
+    y_pred = regressor.predict(X_test)  
 
-    from sklearn.metrics import r2_score
-    score=r2_score(y_test,y_pred)
-    score
+    return render(request, 'result.html',{'result': y_pred})
 
-    return render(request, 'home.html', {'MLR':score})
+
+
