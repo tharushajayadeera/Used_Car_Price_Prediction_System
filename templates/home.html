@@ -1,0 +1,167 @@
+<html>
+    <head>
+        <title>Used car price prediction</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans');
+            body {
+                background-image: url("https://www.vlmauto.com/Dealers/16001_17000/16890/images//1.jpg");
+                font-family: 'Open Sans', sans-serif;
+                font-family: 'Montserrat', sans-serif;
+            }
+            input[type="text"] {
+                font-size: 1.6rem;
+                color: #010100;
+                width: 100%;
+                line-height: 65px;
+                padding-left: 3rem;
+            }
+            select {
+                width: 100%;
+                height: 65px;
+                color: #010100;
+                padding-left: 3rem;
+            }
+            .h1, h1 {
+                font-size: 36px;
+            }
+            .h1, .h2, .h3, h1, h2, h3 {
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            .text-white {
+                color: #fff!important;
+            }
+            .font-w400 {
+                font-weight: 1000;
+            }
+            .padding-top-xl {
+                padding-top: 5rem!important;
+            }
+            .padding-bottom-xl {
+                padding-bottom: 5rem!important;
+            }
+            .margin-top-m {
+                margin-top: 3rem!important;
+            }
+            .margin-bottom-m {
+                margin-bottom: 3rem!important;
+            }
+            .section5 h2 {
+                line-height: 35px;
+            }
+            .section5 p {
+                font-size: 16px;
+                line-height: 26px;
+            }
+            .has-error input[type="text"], .has-error input[type="email"], .has-error select {
+                border: 1px solid #a94442;
+            }
+            .container{
+                background-color: white;
+                padding: 50px;
+                border-radius: 2%;
+            }
+        
+        </style>
+
+    </head>
+        
+    <body>
+        <section class="footer-form padding-top-xl padding-bottom-xl" aria-label="Contact Form">
+        <div class="wrapper">
+            <div class="container">
+            <div class="row">
+                <div class="col-xs-12 section5 text-center">
+                <h2 class="h1 font-w400">Used Car Price Predction System</h2>
+                <p class="margin-top-m margin-bottom-m">This system will predcit a fair price for a particular used car according to its characteristics and other options you enter by using various Machine Learning models.</p>
+                </div>
+            </div>      
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                <form name="contentForm" enctype="multipart/form-data" method="" action="result" role="form" data-toggle="validator" novalidate="true">
+                <div class="form schedule-assessment">
+
+                    <div class="row margin-top-l">
+                    <div class="form-group col-md-6">
+                    <label for="model_year" class="sr-only">Model Year: </label>
+                    <input name="model_year" id="model_year" placeholder="Model year" type="text" value="" required="required" data-error="Please enter the model year." pattern="\d+"  minlength="4" maxlength="4">
+                    <div class="help-block with-errors"></div>
+                    </div><!-- close col--> 
+
+                    <div class="form-group col-md-6">
+                    <label for="transmission" class="sr-only">Transmission: </label>
+                    <select name="transmission" required="required" data-error="Please select one option.">
+                         <option value="">Transmission</option>
+                        <option value="automatic">Automatic</option>
+                        <option value="manual">Manual</option>
+                    </select>
+                    <div class="help-block with-errors"></div>
+                    </div><!-- close col-->
+                    </div><!-- close row-->
+
+                    <div class="row">
+                    <div class="form-group col-md-6">
+                    <label for="body_type" class="sr-only">Body type: </label>
+                    <select name="body_type" required="required" data-error="Please select one option.">
+                         <option value="">Body Type</option>
+                        <option value="saloon">Saloon</option>
+                        <option value="hatchback">Hatchback</option>
+                        <option value="stationwagon">Station wagon</option>
+                        <option value="coupesports">Coupé/Sports</option>
+                    </select>
+                    <div class="help-block with-errors"></div>
+                    </div><!-- close col-->  
+
+                    <div class="form-group col-md-6">
+                    <label for="fuel_type" class="sr-only">Fuel Type: </label>
+                    <select name="fuel_type" required="required" data-error="Please select one option.">
+                         <option value="">Fuel Type</option>
+                        <option value="petrol">Petrol</option>
+                        <option value="diesel">Diesel</option>
+                        <option value="petrolandother">Petrol, Other fuel type</option>
+                        <option value="dieselandother">Diesel, Other fuel type</option>
+                    </select>
+                    <div class="help-block with-errors"></div>
+                    </div><!-- close col-->
+                    </div><!-- close row-->
+
+                    <div class="row">
+                    <div class="form-group col-md-6">
+                    <label for="engine_capacity" class="sr-only">Engine Capacity: </label>
+                    <input name="engine_capacity" id="engine_capacity" placeholder="Engine Capacity" type="text" value="" required="required" data-error="Please enter the engine capacity." pattern="\d+"  minlength="4" maxlength="4">
+                    <div class="help-block with-errors"></div>
+                    </div><!-- close col-->  
+
+                    <div class="form-group col-md-6">
+                    <label for="mileage" class="sr-only">Mileage: </label>
+                    <input name="mileage" id="mileage" placeholder="Mileage" type="text" value="" required="required" data-error="Please enter the mileage." pattern="\d+">
+                    <div class="help-block with-errors"></div>
+                    </div><!-- close col-->
+                    </div><!-- close row-->
+                            
+                    <div class="form-group text-center">
+                    <input class="submit center-block btn btn-primary" value="Predict Price" type="submit">
+                    </div>
+                </div>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+    </body>
+
+</html>
+
+<h3>Score {{MLR}}</h3>
+
+
+
+
+
