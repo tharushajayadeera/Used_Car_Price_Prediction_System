@@ -4,14 +4,18 @@ from .models import Algorithm
 
 # Create your views here.
 
+def index(request):
+
+    return render(request, 'home.html',{'index':""})
+
 
 def home(request):
 
     algo = Algorithm()
     algo.MLR = MLR(request)
     algo.RFR = RFR(request)
-    algo.DTR = RFR(request)
-    algo.GBR = RFR(request)
+    algo.DTR = DTR(request)
+    algo.GBR = GBR(request)
 
     return render(request, 'result.html',{'algo': algo})
 
