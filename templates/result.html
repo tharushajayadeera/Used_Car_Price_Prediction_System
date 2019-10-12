@@ -1,25 +1,167 @@
-Multiple Linear Regression : {{algo.MLR}}
-<br>
-Random Forest Regression : {{algo.RFR}}
-<br>
-Decision Tree Regression : {{algo.DTR}}
-<br>
-Gradient Boosting Regression : {{algo.GBR}}
-<br>
-Average : {{algo.average}}
-
 <html>
     <head>
         <title>Used Car Price Prediction</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
+        <style>
+                @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans');
+                body {
+                    background-image: url("https://www.vlmauto.com/Dealers/16001_17000/16890/images//1.jpg");
+                    font-family: 'Open Sans', sans-serif;
+                    font-family: 'Montserrat', sans-serif;
+                }
+                input[type="text"] {
+                    font-size: 1.6rem;
+                    color: #010100;
+                    width: 100%;
+                    line-height: 65px;
+                    padding-left: 3rem;
+                }
+                .h1, h1 {
+                    font-size: 36px;
+                }
+                .h1, .h2, .h3, h1, h2, h3 {
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                }
+                .text-white {
+                    color: #fff!important;
+                }
+                .font-w400 {
+                    font-weight: 1000;
+                }
+                .padding-top-xl {
+                    padding-top: 5rem!important;
+                }
+                .padding-bottom-xl {
+                    padding-bottom: 5rem!important;
+                }
+                .margin-top-m {
+                    margin-top: 3rem!important;
+                }
+                .margin-bottom-m {
+                    margin-bottom: 3rem!important;
+                }
+                .section5 h2 {
+                    line-height: 35px;
+                }
+                .section5 p {
+                    font-size: 16px;
+                    line-height: 26px;
+                }
+                .has-error input[type="text"], .has-error input[type="email"], .has-error select {
+                    border: 1px solid #a94442;
+                }
+                .container{
+                    background-color: white;
+                    padding: 50px;
+                    border-radius: 2%;
+                }
+                .row.content {height: 550px}
+                .sidenav {
+                  background-color: #f1f1f1;
+                  height: 100%;
+                } 
+                @media screen and (max-width: 767px) {
+                  .row.content {height: auto;} 
+                }
+        </style>
+
+        <script type="text/javascript">
+            window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light1", // "light2", "dark1", "dark2"
+                animationEnabled: false, // change to true		
+                title:{
+                    text: "Predicted price using different Algorithms"
+                },
+                data: [
+                {
+                    // Change type to "bar", "area", "spline", "pie",etc.
+                    type: "column",
+                    dataPoints: [
+                        { label: "Multiple Linear Regression",  y: 2810550  },
+                        { label: "Random Forest Regression", y: 2855000  },
+                        { label: "Decision Tree Regression", y: 3400000  },
+                        { label: "Gradient Boosting Regression",  y: 2844772  }
+                    ]
+                }
+                ]
+            });
+            chart.render();
+
+            }
+        </script>
+
     </head>
         
     <body>
-           
-    </body>
+
+        <section class="footer-form padding-top-xl padding-bottom-xl" aria-label="Contact Form">
+            <div class="wrapper">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-xs-12 section5 text-center">
+                        <h2 class="h1 font-w400">Used Car Price Predction System</h2><br>
+                        <b><h4>Toyota Corolla</h4></b>
+                        </div>
+                    </div>      
+                
+                    <div class="col-sm-12">
+                            <div class="well">
+                                <center>
+                                    <h2>Average Predicted Price</h2>
+                                    <h4>{{algo.average}}</h4>
+                                </center>
+                            </div>
+                
+                            <div class="row">
+                                <div class="col-sm-3">
+                                <div class="well">
+                                    <h4>Multiple Linear Regression</h4>
+                                    <p>{{algo.MLR}}</p> 
+                                </div>
+                                </div>
+                
+                                <div class="col-sm-3">
+                                <div class="well">
+                                    <h4>Random Forest Regression</h4>
+                                    <p>{{algo.RFR}}</p> 
+                                </div>
+                                </div>
+                
+                                <div class="col-sm-3">
+                                <div class="well">
+                                    <h4>Decision Tree Regression</h4>
+                                    <p>{{algo.DTR}}</p> 
+                                </div>
+                                </div>
+                
+                                <div class="col-sm-3">
+                                <div class="well">
+                                    <h4>Gradient Boosting Regression</h4>
+                                    <p>{{algo.GBR}}</p> 
+                                </div>
+                                </div>              
+                            </div>
+
+                            <div class="well">   
+                                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                            </div>
+                    </div>  
+                </div>
+            </div>
+        </section>
+     
+ </body>
+
 
 </html>
 
