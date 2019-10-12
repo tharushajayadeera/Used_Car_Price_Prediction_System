@@ -17,7 +17,8 @@ def home(request):
     algo.DTR = DTR(request)
     algo.GBR = GBR(request)
 
-    algo.average = (algo.MLR+algo.RFR+algo.DTR+algo.GBR)/4
+    import numpy as np
+    algo.average = np.round(((algo.MLR+algo.RFR+algo.DTR+algo.GBR)/4),0)
 
     return render(request, 'result.html',{'algo': algo})
 
@@ -77,7 +78,8 @@ def MLR(request):
            'Petrol':[petrol],
            'Petrol, Other fuel type':[petrolandother]})
 
-    y_pred = regressor.predict(X_test)  
+    y_pred = regressor.predict(X_test)
+    y_pred=np.round(y_pred,0)  
 
     return y_pred
 
@@ -137,7 +139,8 @@ def RFR(request):
            'Petrol':[petrol],
            'Petrol, Other fuel type':[petrolandother]})
 
-    y_pred = regressor.predict(X_test)  
+    y_pred = regressor.predict(X_test) 
+    y_pred=np.round(y_pred,0) 
 
     return y_pred
 
@@ -197,7 +200,8 @@ def DTR(request):
            'Petrol':[petrol],
            'Petrol, Other fuel type':[petrolandother]})
 
-    y_pred = regressor.predict(X_test)  
+    y_pred = regressor.predict(X_test) 
+    y_pred=np.round(y_pred,0) 
 
     return y_pred
 
@@ -258,5 +262,6 @@ def GBR(request):
            'Petrol, Other fuel type':[petrolandother]})
 
     y_pred = regressor.predict(X_test)  
+    y_pred=np.round(y_pred,0)
 
     return y_pred
