@@ -17,6 +17,8 @@ def home(request):
     algo.DTR = DTR(request)
     algo.GBR = GBR(request)
 
+    algo.average = (algo.MLR+algo.RFR+algo.DTR+algo.GBR)/4
+
     return render(request, 'result.html',{'algo': algo})
 
 

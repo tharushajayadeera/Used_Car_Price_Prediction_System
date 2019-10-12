@@ -7,3 +7,4 @@ class Algorithm:
     RFR: float
     DTR: float
     GBR: float
+    average: float
