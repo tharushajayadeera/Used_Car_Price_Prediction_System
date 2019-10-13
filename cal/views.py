@@ -16,9 +16,14 @@ def home(request):
     algo.RFR = RFR(request)
     algo.DTR = DTR(request)
     algo.GBR = GBR(request)
-
     import numpy as np
     algo.average = np.round(((algo.MLR+algo.RFR+algo.DTR+algo.GBR)/4),0)
+
+    algo.MLR = algo.MLR[0]
+    algo.RFR = algo.RFR[0]
+    algo.DTR = algo.DTR[0]
+    algo.GBR = algo.GBR[0]
+    algo.average = algo.average[0]
 
     return render(request, 'result.html',{'algo': algo})
 
